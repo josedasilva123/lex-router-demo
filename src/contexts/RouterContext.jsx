@@ -11,10 +11,14 @@ export const RouterProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    const pathname = window.location.pathname;
-    const search = window.location.search;
-    console.log(search);
+    const pathname = window.location.pathname; // pathname é o que é digitado após a baseURL no navegador ( e antes do search )
+    const search = window.location.search; // os parâmetros escritos no navegador
 
+    /*
+     url: a url do navegador (combinando pathname e search)
+     pathname: pathname isolada, utilizada como condição de renderização para as rotas
+     search: parâmetros de busca que serão convertidos de string para objeto por meio da função getParams
+    */
     setCurrentRoute({
       url: search ? pathname + search : pathname,
       pathname: pathname,
@@ -22,6 +26,7 @@ export const RouterProvider = ({ children }) => {
     });
   }, []);
 
+  /* efeito que espelha o navegador com o estado currentRoute */
   useEffect(() => {
     window.history.pushState("", "", currentRoute.url);
   }, [currentRoute]);
