@@ -40,6 +40,7 @@ export const RouterProvider = ({ children }) => {
   };
 
   const getParams = () => {
+    /* covertendo string em objetos combinado os métodos substring, split e reduce (todos métodos imutáveis) */
     const urlParams = currentRoute.search
       .substring(1)
       .split("&")
